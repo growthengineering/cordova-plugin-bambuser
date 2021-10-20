@@ -226,7 +226,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         return;
                     };
                     String id = mBroadcaster.getCameraId();
-                    log("getCameraId id " + cameraId );
+                    log("getCameraId id " + id );
                     callbackContext.success(id);
                 }
             });
@@ -286,10 +286,13 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         .collect(Collectors.joining(",", "[", "]"));
                         */
                         List<String> result = new ArrayList<String>();
-                        for (E element : mBroadcaster.getSupportedCameras()) {
+                        for (Object element : mBroadcaster.getSupportedCameras()) {
                             result.add(element.toString());
                         }
-                        callbackContext.success(result);
+                        String finalResult = result.stream()
+                        .map(n -> String.valueOf(n))
+                        .collect(Collectors.joining(",", "[", "]"));
+                        callbackContext.success(finalResult);
                 }
             });
             return true;
