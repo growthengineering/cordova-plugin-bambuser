@@ -30,8 +30,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import android.view.OrientationEventListener;
-import java.util.*;
-import org.json.simple.*;
+import org.json.JSONArray;
 
 public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadcaster.Observer {
     /**
