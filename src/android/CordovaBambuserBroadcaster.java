@@ -275,14 +275,14 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         .map(n -> String.valueOf(n))
                         .collect(Collectors.joining(",", "[", "]"));
                         */
-                        List<String> result = mBroadcaster.stream()
+                       List<String> result = mBroadcaster.stream()
                         .map(n -> n::id)
-                        .collect (Collectors.toList())
+                        .collect(Collectors.joining(",", "[", "]"));
 
 
                          List<String> result2 = mBroadcaster.stream()
                         .map(n-> n::facing)
-                        .collect (Collectors.toList())
+                        .collect(Collectors.joining(",", "[", "]"));
                     callbackContext.success([result,result2]);
                 }
             });
