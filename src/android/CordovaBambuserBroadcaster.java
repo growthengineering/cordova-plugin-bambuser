@@ -308,7 +308,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
         }
 
         if ("canSwitchCameraWithoutResolutionChangeById".equals(action)) {
-            final String cameraId = args.getString(0);
+           String cameraId = args.getString(0);
            this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -317,14 +317,14 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         return;
                     }; 
                     int intResult = mBroadcaster.canSwitchCameraWithoutResolutionChange(cameraId) ? 1 : 0;
-                    callbackContext.success(intResult);
+                    callbackContext.success("canSwitchCameraWithoutResolutionChangeById" + intResult  + cameraId );
                 }
             });
             return true;
         }
 
         if ("setCameraId".equals(action)) {
-            final String cameraId = args.getString(0);
+           String cameraId = args.getString(0);
            this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -333,7 +333,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         return;
                     }; 
                     mBroadcaster.setCameraId(cameraId);
-                    callbackContext.success("OK");
+                    callbackContext.success("SET OK cameraId " + cameraId );
                 }
             });
             return true;
