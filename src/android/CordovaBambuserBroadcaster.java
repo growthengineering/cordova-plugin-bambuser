@@ -254,15 +254,34 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
                         return;
                     };
-                      String result = mBroadcaster.getSupportedResolutions().stream()
+                    String result = mBroadcaster.getSupportedResolutions()
+                        .stream()
                         .map(n -> String.valueOf(n))
-                        .collect(Collectors.joining("-", "{", "}"));
+                        .collect(Collectors.joining(",", "[", "]"));
                     callbackContext.success(result);
-                    //callbackContext.success(mBroadcaster.getSupportedResolutions());
                 }
             });
             return true;
         }
+
+        if ("getSupportedCameras".equals(action)) {
+            this.cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mBroadcaster == null) {
+                        callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
+                        return;
+                    };
+                    String result = mBroadcaster.getSupportedCameras()
+                        .stream()
+                        .map(n -> String.valueOf(n))
+                        .collect(Collectors.joining(",", "[", "]"));
+                    callbackContext.success(result);
+                }
+            });
+            return true;
+        }
+
 
         if ("canSwitchCameraWithoutResolutionChange".equals(action)) {
             this.cordova.getActivity().runOnUiThread(new Runnable() {
