@@ -291,7 +291,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                             log("element.id " + element.id );
                             result.add(element.id);
                         }
-                    callbackContext.success([result,result2]);
+                    callbackContext.success(result);
                 }
             });
             return true;

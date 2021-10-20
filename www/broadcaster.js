@@ -318,19 +318,6 @@ Broadcaster.getSupportedResolutions = function(successCallback, errorCallback) {
     return res;
 };
 
-Broadcaster.getSupportedCameras = function(successCallback, errorCallback) {
-    var res;
-    if (!successCallback) {
-        res = new Promise(function (resolve, reject) { successCallback = resolve; errorCallback = reject; });
-    }
-    if (!Broadcaster._applicationIdSet) {
-        errorCallback('applicationId must be set first');
-        return res;
-    }
-    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getSupportedCameras', []);
-    return res;
-};
-
 Broadcaster.toggleTorchLight = function(successCallback, errorCallback) {
     var res;
     if (!successCallback) {
