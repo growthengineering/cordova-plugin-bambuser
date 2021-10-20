@@ -275,10 +275,15 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         .map(n -> String.valueOf(n))
                         .collect(Collectors.joining(",", "[", "]"));
                         */
-                        List<Broadcaster.Camera> result = mBroadcaster.stream()
-                        .map(classType::cast)
+                         List<String> result = mBroadcaster.stream()
+                        .map(classType::id)
                         .collect (Collectors.toList())
-                    callbackContext.success(result);
+
+
+                         List<String> result2 = mBroadcaster.stream()
+                        .map(classType::facing)
+                        .collect (Collectors.toList())
+                    callbackContext.success([result,result2]);
                 }
             });
             return true;
