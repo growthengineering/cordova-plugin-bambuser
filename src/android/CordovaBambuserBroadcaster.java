@@ -226,6 +226,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         return;
                     };
                     String id = mBroadcaster.getCameraId();
+                    log("getCameraId id " + cameraId );
                     callbackContext.success(id);
                 }
             });
@@ -325,6 +326,8 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
 
         if ("setCameraId".equals(action)) {
            String cameraId = args.getString(0);
+
+        log("setCameraId id " + cameraId );
            this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
