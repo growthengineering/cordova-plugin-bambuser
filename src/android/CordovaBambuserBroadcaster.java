@@ -252,8 +252,8 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
                         return;
                     };
-                    mBroadcaster.getSupportedResolutions();
-                    callbackContext.success("Camera switch requested");
+                    ;
+                    callbackContext.success(mBroadcaster.getSupportedResolutions());
                 }
             });
             return true;
@@ -266,9 +266,8 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                     if (mBroadcaster == null) {
                         callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
                         return;
-                    };
-                    mBroadcaster.canSwitchCameraWithoutResolutionChange();
-                    callbackContext.success("Camera switch requested");
+                    }; 
+                    callbackContext.success(mBroadcaster.canSwitchCameraWithoutResolutionChange());
                 }
             });
             return true;
