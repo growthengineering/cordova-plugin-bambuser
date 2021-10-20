@@ -31,7 +31,6 @@ import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import android.view.OrientationEventListener;
 import org.json.JSONArray;
-import com.google.gson.*;
 
 public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadcaster.Observer {
     /**
@@ -273,11 +272,14 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
                         return;
                     };
-                    String result =new Gson().toJson(mBroadcaster.getSupportedCameras());
-                   /* String result = mBroadcaster.getSupportedCameras()
+                      String result = mBroadcaster.getSupportedCameras()
                         .stream()
-                        .map(n -> String.valueOf(n))
-                        .collect(Collectors.joining(",", "[", "]")); */
+                        .map(n -> 
+                            n.stream()
+                            .map(n -> String.valueOf(n))
+                            .collect(Collectors.joining(",", "[", "]"));  
+                        )
+                        .collect(Collectors.joining(",", "[", "]")); 
                     callbackContext.success(result);
                 }
             });
