@@ -263,7 +263,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
             return true;
         }
 
-        if ("getSupportedCameras2".equals(action)) {
+        if ("getSupportedCameras".equals(action)) {
             this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -271,29 +271,14 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
                         return;
                     };
-                    /*String result = mBroadcaster.getSupportedCameras()
-                        .stream()
-                        .map(n -> String.valueOf(n))
-                        .collect(Collectors.joining(",", "[", "]"));
-                        
-                       List<String> result = mBroadcaster.getSupportedCameras().stream()
-                        .map(n -> n::id)
-                        .collect(Collectors.joining(",", "[", "]"));
-
-
-                         List<String> result2 = mBroadcaster.getSupportedCameras().stream()
-                        .map(n-> n::facing)
-                        .collect(Collectors.joining(",", "[", "]"));
-                        */
-                        List<String> result = new ArrayList<String>();
-                        for (Object element : mBroadcaster.getSupportedCameras()) {
-                            result.add(element.id);
-                            result.add(element.facing);
-                        }
-                        String finalResult = result.stream()
-                        .map(n -> String.valueOf(n))
-                        .collect(Collectors.joining(",", "[", "]"));
-                        callbackContext.success(finalResult);
+                    List<String> result = new ArrayList<String>();
+                    for (Broadcaster.Camera element : mBroadcaster.getSupportedCameras()) {
+                        result.add("{ id: " + element.id + ", facing:"+element.facing+"}");
+                    }
+                    String finalResult = result.stream()
+                    .map(n -> String.valueOf(n))
+                    .collect(Collectors.joining(",", "[", "]"));
+                    callbackContext.success(finalResult);
                 }
             });
             return true;
@@ -307,11 +292,17 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
                         return;
                     };
-                    String result = mBroadcaster.getSupportedResolutions()
-                        .stream()
-                        .map(n -> String.valueOf(n))
-                        .collect(Collectors.joining(",", "[", "]"));
-                    callbackContext.success(result);
+
+                    List<String> result = new ArrayList<String>();
+                    for (Object element : mBroadcaster.getSupportedResolutions()) {
+                        result.add("{ resolution: " + element.toString() +"}");
+                    }
+
+                    String finalResult = result.stream()
+                    .map(n -> String.valueOf(n))
+                    .collect(Collectors.joining(",", "[", "]"));
+ 
+                    callbackContext.success(finalResult);
                 }
             });
             return true;

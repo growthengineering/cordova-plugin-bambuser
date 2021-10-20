@@ -263,6 +263,7 @@ Broadcaster.setCameraId = function(cameraId,successCallback, errorCallback) {
         errorCallback('applicationId must be set first');
         return res;
     }
+    console.log('Broadcaster.setCameraId ' + cameraId);
     execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getCameraId', [cameraId]);
     return res;
 };
@@ -292,7 +293,7 @@ Broadcaster.canSwitchCameraWithoutResolutionChange = function(successCallback, e
     return res;
 };
 
-Broadcaster.getSupportedCameras2 = function(successCallback, errorCallback) {
+Broadcaster.getSupportedCameras = function(successCallback, errorCallback) {
     var res;
     if (!successCallback) {
         res = new Promise(function (resolve, reject) { successCallback = resolve; errorCallback = reject; });
@@ -301,7 +302,7 @@ Broadcaster.getSupportedCameras2 = function(successCallback, errorCallback) {
         errorCallback('applicationId must be set first');
         return res;
     }
-    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getSupportedCameras2', []);
+    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getSupportedCameras', []);
     return res;
 };
 
