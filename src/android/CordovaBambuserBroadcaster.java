@@ -244,6 +244,36 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
             return true;
         }
 
+        if ("getSupportedResolutions".equals(action)) {
+            this.cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mBroadcaster == null) {
+                        callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
+                        return;
+                    };
+                    mBroadcaster.getSupportedResolutions();
+                    callbackContext.success("Camera switch requested");
+                }
+            });
+            return true;
+        }
+
+        if ("canSwitchCameraWithoutResolutionChange".equals(action)) {
+            this.cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mBroadcaster == null) {
+                        callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
+                        return;
+                    };
+                    mBroadcaster.canSwitchCameraWithoutResolutionChange();
+                    callbackContext.success("Camera switch requested");
+                }
+            });
+            return true;
+        }
+
         if ("toggleTorchLight".equals(action)) {
             this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
