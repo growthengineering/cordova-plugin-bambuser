@@ -252,8 +252,11 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
                         return;
                     };
-                    ;
-                    callbackContext.success(mBroadcaster.getSupportedResolutions());
+                      String result = mBroadcaster.getSupportedResolutions().stream()
+                        .map(n -> String.valueOf(n))
+                        .collect(Collectors.joining("-", "{", "}"));
+                    callbackContext.success(result);
+                    //callbackContext.success(mBroadcaster.getSupportedResolutions());
                 }
             });
             return true;
