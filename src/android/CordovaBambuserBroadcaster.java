@@ -275,9 +275,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                       String result = mBroadcaster.getSupportedCameras()
                         .stream()
                         .map((n) -> {
-                            n.stream()
-                            .map(n -> String.valueOf(n))
-                            .collect(Collectors.joining(",", "[", "]")); 
+                            n.stream().collect(Collectors.joining(",", "[", "]")); 
                             } 
                         )
                         .collect(Collectors.joining(",", "[", "]")); 
