@@ -263,7 +263,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
             return true;
         }
 
-        if ("getSupportedCameras".equals(action)) {
+        if ("getSupportedCameras2".equals(action)) {
             this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -287,11 +287,9 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         */
                         List<String> result = new ArrayList<String>();
                         for (E element : mBroadcaster.getSupportedCameras()) {
-                            
-                            log("element.id " + element.id );
-                            result.add(element.id);
+                            result.add(element.toString());
                         }
-                    callbackContext.success(result);
+                        callbackContext.success(result);
                 }
             });
             return true;

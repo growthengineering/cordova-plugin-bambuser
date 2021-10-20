@@ -292,7 +292,7 @@ Broadcaster.canSwitchCameraWithoutResolutionChange = function(successCallback, e
     return res;
 };
 
-Broadcaster.getSupportedCameras = function(successCallback, errorCallback) {
+Broadcaster.getSupportedCameras2 = function(successCallback, errorCallback) {
     var res;
     if (!successCallback) {
         res = new Promise(function (resolve, reject) { successCallback = resolve; errorCallback = reject; });
@@ -301,7 +301,7 @@ Broadcaster.getSupportedCameras = function(successCallback, errorCallback) {
         errorCallback('applicationId must be set first');
         return res;
     }
-    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getSupportedCameras', []);
+    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getSupportedCameras2', []);
     return res;
 };
 
