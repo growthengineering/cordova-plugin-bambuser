@@ -324,7 +324,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         return;
                     }; 
                     mBroadcaster.setCameraId(cameraId);
-                    callbackContext.success('OK');
+                    callbackContext.success("OK");
                 }
             });
             return true;
