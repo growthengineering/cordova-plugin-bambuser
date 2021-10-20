@@ -255,6 +255,19 @@ Broadcaster.canSwitchCameraWithoutResolutionChangeById = function(cameraId, succ
 }
 
 
+Broadcaster.getCameraId = function(successCallback, errorCallback) {
+    var res;
+    if (!successCallback) {
+        res = new Promise(function (resolve, reject) { successCallback = resolve; errorCallback = reject; });
+    }
+    if (!Broadcaster._applicationIdSet) {
+        errorCallback('applicationId must be set first');
+        return res;
+    }
+    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getCameraId', []);
+    return res;
+};
+
 Broadcaster.canSwitchCameraWithoutResolutionChange = function(successCallback, errorCallback) {
     var res;
     if (!successCallback) {

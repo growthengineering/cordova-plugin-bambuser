@@ -216,6 +216,22 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
             return true;
         }
 
+
+        if ("getCameraId".equals(action)) {
+            this.cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mBroadcaster == null) {
+                        callbackContext.error("Broadcaster is not initialized. Set applicationId first.");
+                        return;
+                    };
+                    String id = mBroadcaster.getCameraId();
+                    callbackContext.success(id);
+                }
+            });
+            return true;
+        }
+
         if ("stopBroadcast".equals(action)) {
             this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
