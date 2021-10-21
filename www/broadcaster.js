@@ -263,7 +263,7 @@ Broadcaster.setResolution = function(maxWidth,maxHeight,successCallback, errorCa
         errorCallback('applicationId must be set first');
         return res;
     }
-    console.log('Broadcaster.setResolution Plugin ' + cameraId);
+    console.log('Broadcaster.setResolution Plugin ' + maxWidth +'x' +maxHeight);
     execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getCameraId', [maxWidth,maxHeight]);
     return res;
 };

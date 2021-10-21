@@ -295,12 +295,12 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
 
                     List<String> result = new ArrayList<String>();
                     for (Object element : mBroadcaster.getSupportedResolutions()) {
-                        result.add("{ \"resolution\": \"" + element.toString() +"\"}");
+                        result.add(element.toString());
                     }
 
                     String finalResult = result.stream()
                     .map(n -> String.valueOf(n))
-                    .collect(Collectors.joining(",", "[", "]"));
+                    .collect(Collectors.joining(",", "", ""));
  
                     callbackContext.success(finalResult);
                 }
@@ -341,8 +341,8 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
         }
 
         if ("setResolution".equals(action)) {
-           int maxWidth = args.getString(0);
-           int maxHeight = args.getString(1);
+           int maxWidth = args.getInt(0);
+           int maxHeight = args.getInt(1);
            this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
