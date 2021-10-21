@@ -264,7 +264,7 @@ Broadcaster.setResolution = function(maxWidth,maxHeight,successCallback, errorCa
         return res;
     }
     console.log('Broadcaster.setResolution Plugin ' + maxWidth +'x' +maxHeight);
-    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getCameraId', [maxWidth,maxHeight]);
+    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'setResolution', [maxWidth,maxHeight]);
     return res;
 };
 
@@ -278,7 +278,7 @@ Broadcaster.setCameraId = function(cameraId,successCallback, errorCallback) {
         return res;
     }
     console.log('Broadcaster.setCameraId Plugin ' + cameraId);
-    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getCameraId', [cameraId]);
+    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'setCameraId', [cameraId]);
     return res;
 };
 Broadcaster.getCameraId = function(successCallback, errorCallback) {
