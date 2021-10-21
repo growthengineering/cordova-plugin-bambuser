@@ -273,7 +273,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                     };
                     List<String> result = new ArrayList<String>();
                     for (Broadcaster.Camera element : mBroadcaster.getSupportedCameras()) {
-                        result.add("{ id: " + element.id + ", facing:"+element.facing+"}");
+                        result.add("{ \"id\": " + element.id + ",  \"facing\":\""+element.facing+"\"}");
                     }
                     String finalResult = result.stream()
                     .map(n -> String.valueOf(n))
@@ -295,7 +295,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
 
                     List<String> result = new ArrayList<String>();
                     for (Object element : mBroadcaster.getSupportedResolutions()) {
-                        result.add("{ resolution: " + element.toString() +"}");
+                        result.add("{ \"resolution\": \"" + element.toString() +"\"}");
                     }
 
                     String finalResult = result.stream()
@@ -318,7 +318,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         return;
                     }; 
                     int intResult = mBroadcaster.canSwitchCameraWithoutResolutionChange(cameraId) ? 1 : 0;
-                    callbackContext.success("canSwitchCameraWithoutResolutionChangeById" + intResult  + cameraId );
+                    callbackContext.success(intResult);
                 }
             });
             return true;
@@ -326,8 +326,6 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
 
         if ("setCameraId".equals(action)) {
            String cameraId = args.getString(0);
-
-        log("setCameraId id " + cameraId );
            this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
