@@ -263,7 +263,7 @@ Broadcaster.setCameraId = function(cameraId,successCallback, errorCallback) {
         errorCallback('applicationId must be set first');
         return res;
     }
-    console.log('Broadcaster.setCameraId ' + cameraId);
+    console.log('Broadcaster.setCameraId Plugin ' + cameraId);
     execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getCameraId', [cameraId]);
     return res;
 };
