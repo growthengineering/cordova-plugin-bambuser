@@ -254,6 +254,20 @@ Broadcaster.canSwitchCameraWithoutResolutionChangeById = function(cameraId, succ
     return res;
 }
 
+Broadcaster.setResolution = function(maxWidth,maxHeight,successCallback, errorCallback) {
+    var res;
+    if (!successCallback) {
+        res = new Promise(function (resolve, reject) { successCallback = resolve; errorCallback = reject; });
+    }
+    if (!Broadcaster._applicationIdSet) {
+        errorCallback('applicationId must be set first');
+        return res;
+    }
+    console.log('Broadcaster.setResolution Plugin ' + cameraId);
+    execQueue(successCallback, errorCallback, 'CordovaBambuserBroadcaster', 'getCameraId', [maxWidth,maxHeight]);
+    return res;
+};
+
 Broadcaster.setCameraId = function(cameraId,successCallback, errorCallback) {
     var res;
     if (!successCallback) {
