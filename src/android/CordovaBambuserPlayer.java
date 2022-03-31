@@ -73,7 +73,7 @@ public class CordovaBambuserPlayer extends CordovaPlugin implements BroadcastPla
                     float arDiff = screenAR - videoAR;
 
                     boolean shouldCrop = Math.abs(arDiff) < 0.2;
-                    previewSurfaceView.setCropToParent(shouldCrop);
+                    playbackSurfaceView.setCropToParent(shouldCrop);
 
             
                     // calcalute the margin top based on the aspect ratio 
@@ -82,8 +82,8 @@ public class CordovaBambuserPlayer extends CordovaPlugin implements BroadcastPla
                     ViewGroup parentView = (ViewGroup) webView.getView().getParent();
                     RelativeLayout.LayoutParams previewLayoutParams = new RelativeLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
                     previewLayoutParams.setMargins(0, 20 , 0 , 0);
-                    parentView.removeView(previewSurfaceView);
-                    parentView.addView(previewSurfaceView, 0, previewLayoutParams);
+                    parentView.removeView(playbackSurfaceView);
+                    parentView.addView(playbackSurfaceView, 0, previewLayoutParams);
                 
                     callbackContext.success("Playback view added");
                 }
