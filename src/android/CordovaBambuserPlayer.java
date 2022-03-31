@@ -1,6 +1,8 @@
 package com.bambuser.cordova;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.util.Log;
 import android.view.Display;
 import android.view.OrientationEventListener;
@@ -20,6 +22,8 @@ import org.json.JSONObject;
 import com.bambuser.broadcaster.BroadcastPlayer;
 import com.bambuser.broadcaster.PlayerState;
 import com.bambuser.broadcaster.SurfaceViewWithAutoAR;
+import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -77,7 +81,7 @@ public class CordovaBambuserPlayer extends CordovaPlugin implements BroadcastPla
                     int offsetTop = Math.round((size.y / 2) - (size.x /  videoAR / 2));
                     ViewGroup parentView = (ViewGroup) webView.getView().getParent();
                     RelativeLayout.LayoutParams previewLayoutParams = new RelativeLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-                    previewLayoutParams.setMargins(0, 10 , 0 , 0);
+                    previewLayoutParams.setMargins(0, 20 , 0 , 0);
                     parentView.removeView(previewSurfaceView);
                     parentView.addView(previewSurfaceView, 0, previewLayoutParams);
                 

@@ -3,11 +3,14 @@ package com.bambuser.cordova;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.Manifest.permission;
 import android.util.Log;
 import android.view.Display;
 import android.view.Surface;
+import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 import android.view.ViewGroup;
@@ -71,7 +74,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                     int offsetTop = Math.round((size.y / 2) - (size.x /  videoAR / 2));
                     ViewGroup parentView = (ViewGroup) webView.getView().getParent();
                     RelativeLayout.LayoutParams previewLayoutParams = new RelativeLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-                    previewLayoutParams.setMargins(0, 10 , 0 , 0);
+                    previewLayoutParams.setMargins(0, 20 , 0 , 0);
                     parentView.removeView(previewSurfaceView);
                     parentView.addView(previewSurfaceView, 0, previewLayoutParams);
                 
