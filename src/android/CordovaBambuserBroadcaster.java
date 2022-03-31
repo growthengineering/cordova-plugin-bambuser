@@ -56,11 +56,31 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         callbackContext.error("Viewfinder view not initialized. Set applicationId first.");
                         return;
                     }
+
+                    Point size = getScreenSize();
+                    float screenAR = 0 / (float) 0;
+                    float videoAR = WindowManager.LayoutParams.MATCH_PARENT / (float) WindowManager.LayoutParams.MATCH_PARENT;
+                    float arDiff = screenAR - videoAR;
+
+                    boolean shouldCrop = Math.abs(arDiff) < 0.2;
+                    previewSurfaceView.setCropToParent(shouldCrop);
+
+            
+                    // calcalute the margin top based on the aspect ratio 
+                    // might be better to do it with the layout option to vertically centre it.
+                    int offsetTop = Math.round((size.y / 2) - (size.x /  videoAR / 2));
+                    ViewGroup parentView = (ViewGroup) webView.getView().getParent();
+                    RelativeLayout.LayoutParams previewLayoutParams = new RelativeLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+                    previewLayoutParams.setMargins(0, 10 , 0 , 0);
+                    parentView.removeView(previewSurfaceView);
+                    parentView.addView(previewSurfaceView, 0, previewLayoutParams);
+                
+                    /*
                     webView.getView().setBackgroundColor(android.R.color.transparent);
                     ViewGroup parentView = (ViewGroup) webView.getView().getParent();
                     RelativeLayout.LayoutParams previewLayoutParams = new RelativeLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
                     parentView.addView(previewSurfaceView, 0, previewLayoutParams);
-
+                    */
                     callbackContext.success("Viewfinder view added");
                 }
             });
@@ -643,6 +663,21 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
 
     private void displayToast(final String text) {
         Toast.makeText(this.cordova.getActivity().getApplicationContext(), text, Toast.LENGTH_LONG).show();
+    }
+
+    private Point getScreenSize() {
+        if (mDefaultDisplay == null)
+        mDefaultDisplay = cordova.getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        try {
+            // this is officially supported since SDK 17 and said to work down to SDK 14 through reflection,
+            // so it might be everything we need.
+            mDefaultDisplay.getClass().getMethod("getRealSize", Point.class).invoke(mDefaultDisplay, size);
+        } catch (Exception e) {
+            // fallback to approximate size.
+            mDefaultDisplay.getSize(size);
+        }
+        return size;
     }
 
     private void log(final String text) {
