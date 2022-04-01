@@ -25,7 +25,7 @@ import com.bambuser.broadcaster.SurfaceViewWithAutoAR;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class CordovaBambuserPlayer extends CordovaPlugin implements BroadcastPlayer.Observer {
     /**

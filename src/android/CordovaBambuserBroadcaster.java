@@ -11,7 +11,7 @@ import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
