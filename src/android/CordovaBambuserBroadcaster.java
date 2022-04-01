@@ -74,7 +74,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                     int offsetTop = Math.round((size.y / 2) - (size.x /  videoAR / 2));
                     ViewGroup parentView = (ViewGroup) webView.getView().getParent();
                     RelativeLayout.LayoutParams previewLayoutParams = new RelativeLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-                    previewLayoutParams.setMargins(0, 20 , 0 , 0);
+                    previewLayoutParams.setMargins(0, 100 , 0 , 0);
                     parentView.removeView(previewSurfaceView);
                     parentView.addView(previewSurfaceView, 0, previewLayoutParams);
                 
