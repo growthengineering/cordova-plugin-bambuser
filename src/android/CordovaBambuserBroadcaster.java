@@ -60,7 +60,7 @@ public class CordovaBambuserBroadcaster extends CordovaPlugin implements Broadca
                         return;
                     }
 
-                    laybackSurfaceView.setCropToParent(true);
+                    playbackSurfaceView.setCropToParent(true);
                     ViewGroup parentView = (ViewGroup) webView.getView().getParent();
                     RelativeLayout.LayoutParams previewLayoutParams = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
                     previewLayoutParams.setMargins(0, 0 , 0 , 0);
