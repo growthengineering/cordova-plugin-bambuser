@@ -1,6 +1,8 @@
 package com.bambuser.cordova;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.util.Log;
 import android.view.Display;
 import android.view.OrientationEventListener;
@@ -20,8 +22,10 @@ import org.json.JSONObject;
 import com.bambuser.broadcaster.BroadcastPlayer;
 import com.bambuser.broadcaster.PlayerState;
 import com.bambuser.broadcaster.SurfaceViewWithAutoAR;
+import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
 
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class CordovaBambuserPlayer extends CordovaPlugin implements BroadcastPlayer.Observer {
     /**
@@ -63,10 +67,14 @@ public class CordovaBambuserPlayer extends CordovaPlugin implements BroadcastPla
                         callbackContext.error("Player view not initialized.");
                         return;
                     }
-                    webView.getView().setBackgroundColor(android.R.color.transparent);
+                      
+                    playbackSurfaceView.setCropToParent(true);
                     ViewGroup parentView = (ViewGroup) webView.getView().getParent();
-                    RelativeLayout.LayoutParams previewLayoutParams = new RelativeLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+                    RelativeLayout.LayoutParams previewLayoutParams = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
+                    previewLayoutParams.setMargins(0, 0 , 0 , 0);
+                    parentView.removeView(playbackSurfaceView);
                     parentView.addView(playbackSurfaceView, 0, previewLayoutParams);
+                
                     callbackContext.success("Playback view added");
                 }
             });
